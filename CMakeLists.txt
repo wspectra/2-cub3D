@@ -25,3 +25,4 @@ add_executable(cub3D
         ./libft/ft_lstadd_back.c ./libft/ft_lstdelone.c ./libft/ft_lstclear.c ./libft/ft_lstiter.c
         ./libft/ft_lstmap.c ./libft/get_next_line.c
         )
+
