@@ -19,5 +19,7 @@ void parsing (char **file)
 
 	all.file = &struct_file;
 	all.file->map = file;
-	print_map(&all);
+//	print_map(&all);
+	make_cub(&all);
+
 }

@@ -21,8 +21,12 @@
 # include "./mlx/mlx.h"
 typedef struct	s_plr
 {
-	int			x;
-	int			y;
+	double			x;
+	double			y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
 }				t_plr;
 
 typedef struct	s_mlx
@@ -61,5 +65,6 @@ typedef struct	s_all
 void read_file(int fd);
 void parsing (char **file);
 void print_map(t_all *all);
+void make_cub(t_all *all);
 
 #endif
