@@ -14,7 +14,11 @@ add_executable(cub3D
         read_file.c
         print_map.c
         parsing.c
-        make_cub.c
+        check_resolution_validity.c
+        check_colors_validity.c
+        check_path_validity.c
+
+        #        make_cub.c
         ./libft/ft_memset.c ./libft/ft_bzero.c ./libft/ft_memcpy.c ./libft/ft_memccpy.c ./libft/ft_memmove.c
         ./libft/ft_strlen.c ./libft/ft_strlcpy.c ./libft/ft_atoi.c ./libft/ft_isalpha.c ./libft/ft_isdigit.c
         ./libft/ft_isalnum.c ./libft/ft_isascii.c ./libft/ft_isprint.c ./libft/ft_toupper.c ./libft/ft_tolower.c

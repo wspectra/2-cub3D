@@ -17,16 +17,18 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
 # include "./libft/libft.h"
 # include "./mlx/mlx.h"
+
 typedef struct	s_plr
 {
-	double			x;
-	double			y;
-	double			dir_x;
-	double			dir_y;
-	double			plane_x;
-	double			plane_y;
+	int			x;
+	int			y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 }				t_plr;
 
 typedef struct	s_mlx
@@ -38,7 +40,7 @@ typedef struct	s_mlx
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	char	 **map;
+	char	**map;
 	t_plr	*plr;
 }				t_mlx;
 
@@ -53,6 +55,7 @@ typedef struct	s_file
 	char	*sprite;
 	int		ceilling;
 	int		floor;
+	int		error;
 	char	**map;
 }				t_file;
 
@@ -62,9 +65,12 @@ typedef struct	s_all
 	t_mlx	*mlx;
 }				t_all;
 
-void read_file(int fd);
-void parsing (char **file);
-void print_map(t_all *all);
-void make_cub(t_all *all);
+void			read_file(int fd);
+void			parsing (char **file);
+void			print_map(t_all *all);
+void			make_cub(t_all *all);
+void			check_colors_validity(t_file *file, char *str, int i, char c);
+void			check_resolution_validity(t_file *file, char *str, int i);
+void			check_path_validity(t_file *file, char *str, int i);
 
 #endif

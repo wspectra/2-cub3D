@@ -12,25 +12,25 @@
 
 #include "cub3d.h"
 
-char **write_down(t_list *begin, int size)
+static char	**write_down(t_list *begin, int size)
 {
-	char **file;
-	int i;
+	char	**file;
+	int		i;
 
 	if (!(file = (char **)malloc(sizeof(char*) * (size + 1))))
-		return(NULL);
+		return (NULL);
 	i = 0;
-	while(i < size)
+	while (i < size)
 	{
 		file[i] = begin->content;
 		begin = begin->next;
 		i++;
 	}
 	file[i] = NULL;
-	return(file);
+	return (file);
 }
 
-void read_file(int fd)
+void		read_file(int fd)
 {
 	char	*line;
 	char	**file;
@@ -45,7 +45,7 @@ void read_file(int fd)
 	if (!(file = write_down(list_start, ft_lstsize(list_start))))
 	{
 		write(1, "Error\nMemory allocation fail\n", 31);
-		return;
+		return ;
 	}
 	parsing(file);
 }

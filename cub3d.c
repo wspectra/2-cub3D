@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static int check_file_name_validity(char *str)
+static int	check_file_name_validity(char *str)
 {
 	int i;
 
@@ -26,7 +26,7 @@ static int check_file_name_validity(char *str)
 		return (0);
 }
 
-int main(int argc, char *argv[])
+int			main(int argc, char *argv[])
 {
 	int fd;
 
