@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static int	path_len(char *str, int i)
+static int	path_len(const char *str, int i)
 {
 	int len;
 
@@ -25,7 +25,7 @@ static int	path_len(char *str, int i)
 	return (len);
 }
 
-static char	what_type_texture(char *str, int *i)
+static char	what_type_texture(const char *str, int *i)
 {
 	char	c;
 	int		k;

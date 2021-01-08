@@ -72,5 +72,8 @@ void			make_cub(t_all *all);
 void			check_colors_validity(t_file *file, char *str, int i, char c);
 void			check_resolution_validity(t_file *file, char *str, int i);
 void			check_path_validity(t_file *file, char *str, int i);
+void			check_map_validity(t_all *all, int *start_map,
+						int size_file, char **file);
+int check_cell(char **map, int x, int y);
 
 #endif

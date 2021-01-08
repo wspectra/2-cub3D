@@ -12,8 +12,9 @@
 
 NAME		= cub3D
 
-SRCS		= cub3d.c read_file.c  parsing.c check_resolution_validity.c check_colors_validity.c\
-			check_path_validity.c
+SRCS		= cub3d.c read_file.c\
+parsing.c check_resolution_validity.c check_colors_validity.c\
+			check_path_validity.c check_map_validity.c check_cell.c\
 
 #cub3d_map.c cmake_cub.c print_map.c
 

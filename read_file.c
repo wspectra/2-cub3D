@@ -22,7 +22,7 @@ static char	**write_down(t_list *begin, int size)
 	i = 0;
 	while (i < size)
 	{
-		file[i] = begin->content;
+		file[i] = ft_strdup(begin->content);
 		begin = begin->next;
 		i++;
 	}

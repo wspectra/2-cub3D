@@ -31,7 +31,15 @@ static void	make_file_structure(t_all *all)
 	all->file = file;
 }
 
+int size_of_file(char **file)
+{
+	int i;
 
+	i = 0;
+	while(file[i] != NULL)
+		i++;
+	return (i);
+}
 
 
 void		parsing (char **file)
@@ -54,21 +62,18 @@ void		parsing (char **file)
 			check_path_validity(all.file, file[y], x);
 		else if (file[y][x] == 'F' || file[y][x] == 'C')
 			check_colors_validity(all.file, file[y], x, file[y][x]);
-//		if (file[y][x] == '1')
-//			check_map_validity();
-//		if (file[y][x] != '\0')
-//		{
-//			delete_structure(&all.file, file[y]);
-//			return;
-//		}
+		else if (file[y][x] == '1')
+			check_map_validity(&all, &y, size_of_file(file), file);
+		else if (file[y][x] != '\0')
+		{
+			all.file->error = 1;
+			break;
+		}
+		printf("|%d|  %d\n", y, all.file->error);
 		y++;
 	}
-	printf("N = %s\nS = %s\nW = %s\nE = %s\nP = %s\n error %d\n",
-		all.file->north, all.file->south, all.file->west,
-		   all.file->east, all.file->sprite, all.file->error);
-//	all.file = &struct_file;
-//	all.file->map = file;
-//	print_map(&all);
-//	make_cub(&all);
-
+//	printf("N = %s\nS = %s\nW = %s\nE = %s\nP = %s\n error %d\n",
+//		   all.file->north, all.file->south, all.file->west,
+//		   all.file->east, all.file->sprite, all.file->error);
+	printf("error %d\n", all.file->error);
 }

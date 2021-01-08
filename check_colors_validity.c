@@ -61,7 +61,6 @@ void		check_colors_validity(t_file *file, char *str, int i, char c)
 		file->error = 1;
 		return ;
 	}
-	printf("r %d, g %d, b %d\n\n", r, g, b);
 	if (c == 'F')
 		file->floor = create_rgb(r, g, b);
 	else

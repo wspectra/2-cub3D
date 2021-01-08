@@ -17,6 +17,8 @@ add_executable(cub3D
         check_resolution_validity.c
         check_colors_validity.c
         check_path_validity.c
+        check_map_validity.c
+        check_cell.c
 
         #        make_cub.c
         ./libft/ft_memset.c ./libft/ft_bzero.c ./libft/ft_memcpy.c ./libft/ft_memccpy.c ./libft/ft_memmove.c
