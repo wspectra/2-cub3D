@@ -16,7 +16,7 @@ static void	make_file_structure(t_all *all)
 {
 	t_file	*file;
 
-	file = (t_file*)malloc(sizeof (t_file));
+	file = (t_file*)malloc(sizeof(t_file));
 	file->resol_x = 0;
 	file->resol_y = 0;
 	file->north = 0x0;
@@ -31,18 +31,28 @@ static void	make_file_structure(t_all *all)
 	all->file = file;
 }
 
-int size_of_file(char **file)
+static int	size_of_file(char **file)
 {
 	int i;
 
 	i = 0;
-	while(file[i] != NULL)
+	while (file[i] != NULL)
 		i++;
 	return (i);
 }
-
-
-void		parsing (char **file)
+int check_errors(t_file *file)
+{
+	if (file->error == 1 || file->resol_x == 0 || file->north == NULL ||
+			!file->west || file->east  == NULL || file->south == NULL ||
+			file->sprite == NULL || file->ceilling == -1 || file->map == NULL||
+			file->floor == -1)
+	{
+		write(1, "Error\nInvalid map data\n", 23);
+		return (1);
+	}
+	return (0);
+}
+void		parsing(char **file)
 {
 	t_all	all;
 	int		x;
@@ -67,13 +77,13 @@ void		parsing (char **file)
 		else if (file[y][x] != '\0')
 		{
 			all.file->error = 1;
-			break;
+			break ;
 		}
-		printf("|%d|  %d\n", y, all.file->error);
 		y++;
 	}
-//	printf("N = %s\nS = %s\nW = %s\nE = %s\nP = %s\n error %d\n",
-//		   all.file->north, all.file->south, all.file->west,
-//		   all.file->east, all.file->sprite, all.file->error);
-	printf("error %d\n", all.file->error);
+	if (check_errors(all.file) != 1)
+	{
+		make_game(&all);
+	}
+	delete_structure_file(&all);
 }

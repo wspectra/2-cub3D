@@ -58,15 +58,15 @@ static int	check_and_add_path(const char *path, char c, t_file *file)
 		return (0);
 	close(fd);
 	if (c == 'N')
-		file->north = (char *)path;
+		file->north = ft_strdup(path);
 	else if (c == 'S')
-		file->south = (char *)path;
+		file->south = ft_strdup(path);
 	else if (c == 'W')
-		file->west = (char *)path;
+		file->west = ft_strdup(path);
 	else if (c == 'E')
-		file->east = (char *)path;
+		file->east = ft_strdup(path);
 	else if (c == 'P')
-		file->sprite = (char *)path;
+		file->sprite = ft_strdup(path);
 	return (1);
 }
 
@@ -78,7 +78,7 @@ static void	get_path(char *str, int *i, char c, t_file *file)
 
 	p = 0;
 	k = *i;
-	if (!(path = (char*)malloc(sizeof(char) * (path_len(str, *i) + 1))))
+	if (!(path = (char*)malloc(sizeof(char) * (path_len(str, k) + 1))))
 		return ;
 	while (str[k] != ' ' && str[k] != '\0')
 	{
@@ -91,6 +91,7 @@ static void	get_path(char *str, int *i, char c, t_file *file)
 		k++;
 	if (str[k] != '\0' || check_and_add_path(path, c, file) == 0)
 		file->error = 1;
+	free(path);
 }
 
 void		check_path_validity(t_file *file, char *str, int i)
@@ -98,7 +99,7 @@ void		check_path_validity(t_file *file, char *str, int i)
 	char	type;
 
 	type = what_type_texture(str, &i);
-	if (file->error == 1 || type == 'X' || (type == 'N' && file->north) ||
+	if (type == 'X' || (type == 'N' && file->north) ||
 			(type == 'S' && file->south) || (type == 'P' && file->sprite) ||
 			(type == 'E' && file->east) || (type == 'W' && file->west))
 	{

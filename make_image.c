@@ -1,27 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   make_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wspectra <wspectra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wspectra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 20:00:35 by wspectra          #+#    #+#             */
-/*   Updated: 2020/10/29 20:34:14 by wspectra         ###   ########.fr       */
+/*   Created: 2021/01/30 15:08:48 by wspectra          #+#    #+#             */
+/*   Updated: 2021/01/30 15:08:50 by wspectra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
 
-	i = 0;
-	if (str == NULL)
-		return (0);
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}

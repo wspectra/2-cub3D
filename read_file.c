@@ -22,7 +22,8 @@ static char	**write_down(t_list *begin, int size)
 	i = 0;
 	while (i < size)
 	{
-		file[i] = ft_strdup(begin->content);
+		if (!(file[i] = ft_strdup(begin->content)))
+			return (NULL);
 		begin = begin->next;
 		i++;
 	}
@@ -48,4 +49,6 @@ void		read_file(int fd)
 		return ;
 	}
 	parsing(file);
+	delete_file(file);
+	ft_lstclear(&list_start, free);
 }

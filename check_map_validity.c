@@ -22,7 +22,8 @@ char **make_map(char **file, int start, int end)
 	i = 0;
 	while (file[start] != NULL)
 	{
-		map[i] = ft_strdup(file[start]);
+		if (!(map[i] = ft_strdup(file[start])))
+			return (NULL);
 		i++;
 		start++;
 	}
@@ -33,38 +34,36 @@ char **make_map(char **file, int start, int end)
 
 void check_map_validity(t_all *all, int *start_map, int size_file, char **file)
 {
-	char **map;
 	int start;
 	int x;
 	int y;
 	int plr;
+
 	start = *start_map;
 	if (all->file->error == 1)
 		return;
-	if (!(map = make_map(file, start, size_file)))
+	if (!(all->file->map = make_map(file, start, size_file)))
 	{
 		all->file->error = 1;
 		return;
 	}
 	y = 0;
 	plr = 0;
-
-	while (map[y] != NULL)
+	while (all->file->map[y] != NULL)
 	{
 		x = 0;
-		while (map[y][x] != '\0')
+		while (all->file->map[y][x] != '\0')
 		{
-			if (map[y][x] == '0' || map[y][x] == '2')
+			if (all->file->map[y][x] == '0' || all->file->map[y][x] == '2')
 			{
-				if (check_cell(map, x, y) != 0)
+				if (check_cell(all->file->map, x, y) != 0)
 				{
-					printf("\nboom\n");
 					all->file->error = 1;
 					return;
 				}
 			}
-			else if (map[y][x] == 'N' || map[y][x] == 'W' ||
-					map[y][x] == 'E' || map[y][x] == 'S')
+			else if (all->file->map[y][x] == 'N' || all->file->map[y][x] == 'W' ||
+					all->file->map[y][x] == 'E' || all->file->map[y][x] == 'S')
 			{
 				if (plr == 1)
 				{
@@ -73,8 +72,13 @@ void check_map_validity(t_all *all, int *start_map, int size_file, char **file)
 				}
 				else
 					plr = 1;
+				if (check_cell(all->file->map, x, y) != 0)
+				{
+					all->file->error = 1;
+					return;
+				}
 			}
-			else if (map[y][x] != '1' && map[y][x] != ' ')
+			else if (all->file->map[y][x] != '1' && all->file->map[y][x] != ' ')
 			{
 				all->file->error = 1;
 				return;

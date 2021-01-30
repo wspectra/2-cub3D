@@ -98,7 +98,7 @@ void draw_vert_line(t_mlx mlx, int x, int drawStart, int drawEnd, int side)
 	}
 }
 
-void ft_make_image(t_mlx mlx, char **map, int width, int high)
+//void ft_make_image(t_mlx mlx, char **map, int width, int high)
 {
 	int i;
 	int w;

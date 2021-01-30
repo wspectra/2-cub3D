@@ -14,15 +14,18 @@
 
 int	check_up(char **map, int x, int y)
 {
-	while (((int)ft_strlen(map[y]) > x) && y > 0 && ft_strchr("02NSWE", map[y][x]))
+	while (((int)ft_strlen(map[y]) > x) && ft_strchr("02NSWE", map[y][x]) && y > 0)
 	{
 		y--;
 	}
-	if ((int)ft_strlen(map[y]) < x)
+	if (map[y][x] != '1')
 		return (1);
-	if (map[y][x] == '1')
-		return (0);
-	return (1);
+	return (0);
+//	if ((int)ft_strlen(map[y]) < x)
+//		return (1);
+//	if (map[y][x] == '1')
+//		return (0);
+//	return (1);
 }
 
 int	check_down(int size, char **map, int x, int y)
@@ -32,11 +35,14 @@ int	check_down(int size, char **map, int x, int y)
 	{
 		y++;
 	}
-	if ((int)ft_strlen(map[y]) < x)
+	if (map[y][x] != '1')
 		return (1);
-	if (map[y][x] == '1')
-		return (0);
-	return (1);
+	return (0);
+//	if ((int)ft_strlen(map[y]) < x)
+//		return (1);
+//	if (map[y][x] == '1')
+//		return (0);
+//	return (1);
 }
 
 int	check_left(char **map, int x, int y)

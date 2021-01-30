@@ -74,6 +74,13 @@ void			check_resolution_validity(t_file *file, char *str, int i);
 void			check_path_validity(t_file *file, char *str, int i);
 void			check_map_validity(t_all *all, int *start_map,
 						int size_file, char **file);
-int check_cell(char **map, int x, int y);
+int				check_cell(char **map, int x, int y);
+void			 delete_file(char **file);
+void			delete_structure_file(t_all *all);
+void			make_game(t_all *all);
+void 			ft_make_image(t_mlx mlx, char **map, int width, int high);
+
+
+
 
 #endif
