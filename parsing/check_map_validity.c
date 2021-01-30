@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "./../cub3d.h"
 
 char **make_map(char **file, int start, int end)
 {

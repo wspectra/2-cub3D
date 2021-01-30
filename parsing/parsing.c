@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "./../cub3d.h"
 
 static void	make_file_structure(t_all *all)
 {

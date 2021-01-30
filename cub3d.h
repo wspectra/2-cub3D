@@ -21,15 +21,12 @@
 # include "./libft/libft.h"
 # include "./mlx/mlx.h"
 
-typedef struct	s_plr
+typedef struct	s_ray
 {
-	int			x;
-	int			y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-}				t_plr;
+	double posX;
+	double posY;
+
+}				t_ray;
 
 typedef struct	s_mlx
 {
@@ -41,7 +38,7 @@ typedef struct	s_mlx
 	int		line_length;
 	int		endian;
 	char	**map;
-	t_plr	*plr;
+	t_ray	*ray;
 }				t_mlx;
 
 typedef struct	s_file
@@ -78,7 +75,7 @@ int				check_cell(char **map, int x, int y);
 void			 delete_file(char **file);
 void			delete_structure_file(t_all *all);
 void			make_game(t_all *all);
-void 			ft_make_image(t_mlx mlx, char **map, int width, int high);
+void 			ft_make_image(t_all *all, char **map, int width, int high);
 
 
 

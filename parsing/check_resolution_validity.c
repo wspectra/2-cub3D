@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "./../cub3d.h"
 
 static int	find_number(char *str, int *i)
 {

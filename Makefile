@@ -12,10 +12,11 @@
 
 NAME		= cub3D
 
-SRCS		= cub3d.c read_file.c\
-parsing.c check_resolution_validity.c check_colors_validity.c\
-			check_path_validity.c check_map_validity.c check_cell.c\
-			delete.c make_game.c make_image.c
+SRCS		= main.c read_file.c\
+			./parsing/parsing.c ./parsing/check_resolution_validity.c\
+			./parsing/check_colors_validity.c ./parsing/check_path_validity.c\
+			./parsing/check_map_validity.c ./parsing/check_cell.c\
+			delete.c ./game/make_game.c ./game/make_image.c
 
 #cub3d_map.c cmake_cub.c print_map.c
 
