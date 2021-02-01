@@ -21,12 +21,48 @@
 # include "./libft/libft.h"
 # include "./mlx/mlx.h"
 
-typedef struct	s_ray
+# define SPEED 0.1
+# define TURN 0.1
+
+typedef struct	s_plr
 {
 	double posX;
 	double posY;
 
-}				t_ray;
+	int map_pos_x;
+	int map_pos_y;
+
+	double ray_dir_x;
+	double ray_dir_y;
+
+	double vector_x;
+	double vector_y;
+
+	double plan_x;
+	double plan_y;
+
+	double side_x;
+	double side_y;
+	double delta_x;
+	double delta_y;
+
+	double wall_dist;
+
+	int step_x;
+	int step_y;
+
+	int side;
+	int	hit;
+
+	int				start_line;
+	int				end_line;
+	int				hight_line;
+
+	int	wid;
+	int hig;
+	double *wall_dist_array;
+
+}				t_plr;
 
 typedef struct	s_mlx
 {
@@ -38,7 +74,6 @@ typedef struct	s_mlx
 	int		line_length;
 	int		endian;
 	char	**map;
-	t_ray	*ray;
 }				t_mlx;
 
 typedef struct	s_file
@@ -60,6 +95,7 @@ typedef struct	s_all
 {
 	t_file	*file;
 	t_mlx	*mlx;
+	t_plr	*plr;
 }				t_all;
 
 void			read_file(int fd);
@@ -70,12 +106,12 @@ void			check_colors_validity(t_file *file, char *str, int i, char c);
 void			check_resolution_validity(t_file *file, char *str, int i);
 void			check_path_validity(t_file *file, char *str, int i);
 void			check_map_validity(t_all *all, int *start_map,
-						int size_file, char **file);
+								   int size_file, char **file);
 int				check_cell(char **map, int x, int y);
 void			 delete_file(char **file);
 void			delete_structure_file(t_all *all);
 void			make_game(t_all *all);
-void 			ft_make_image(t_all *all, char **map, int width, int high);
+int 			ft_make_image(t_all *all);
 
 
 
