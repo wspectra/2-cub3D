@@ -129,6 +129,7 @@ static void	ft_ray_dir(t_all *all)
 	}
 }
 
+
 void			ft_sky_earth(t_all *all, int j, int hig)
 {
 	int			i;
@@ -142,6 +143,7 @@ void			ft_sky_earth(t_all *all, int j, int hig)
 	}
 	while (i < all->plr->end_line)
 	{
+//		my_mlx_pixel_put(all->mlx, j, i, what_color(all, j, hig));
 		my_mlx_pixel_put(all->mlx, j, i, 0x008c2323);
 		i++;
 	}

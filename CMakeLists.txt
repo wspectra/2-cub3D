@@ -21,6 +21,7 @@ add_executable(cub3D
         delete.c
         game/make_game.c
         game/make_image.c
+        ./game/what_colour.c
         #        make_cub.c
         ./libft/ft_memset.c ./libft/ft_bzero.c ./libft/ft_memcpy.c ./libft/ft_memccpy.c ./libft/ft_memmove.c
         ./libft/ft_strlen.c ./libft/ft_strlcpy.c ./libft/ft_atoi.c ./libft/ft_isalpha.c ./libft/ft_isdigit.c

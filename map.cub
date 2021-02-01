@@ -4,7 +4,7 @@ SO ./textures/grey_wall.xpm
 WE ./textures/red_wall.xpm
 EA ./textures/window_wall.xpm
 S ./textures/coin.xpm
-F 0,0,0
+F 36,36,36
 C 0,0,0
 
 111111111111111111111111111111111

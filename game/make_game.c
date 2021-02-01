@@ -169,6 +169,38 @@ int		press_key(int key, void *all)
 	return (1);
 }
 
+void xpm_to_image(void *mlx,t_img *img, char *path)
+{
+	int fd;
+
+	fd = open(path, O_RDONLY);
+	mlx_xpm_file_to_image(mlx, path, &img->img_width, &img->img_height);
+	close(fd);
+}
+
+void 	make_images(t_all *all)
+{
+	t_img north;
+	t_img south;
+	t_img west;
+	t_img east;
+	t_img sprite;
+
+	all->mlx->sprite = &sprite;
+	all->mlx->west = &west;
+	all->mlx->east = &east;
+	all->mlx->south = &south;
+	all->mlx->north = &north;
+
+	xpm_to_image(all->mlx->mlx, all->mlx->north, all->file->north);
+	xpm_to_image(all->mlx->mlx, all->mlx->west, all->file->west);
+	xpm_to_image(all->mlx->mlx, all->mlx->east, all->file->east);
+	xpm_to_image(all->mlx->mlx, all->mlx->south, all->file->south);
+	xpm_to_image(all->mlx->mlx, all->mlx->sprite, all->file->sprite);
+
+
+}
+
 void make_game(t_all *all)
 {
 	t_mlx mlx;
@@ -180,6 +212,7 @@ void make_game(t_all *all)
 	where_is_player(all);
 	all->mlx->mlx= mlx_init();
 	mlx_get_screen_size(all->mlx->mlx, &all->plr->wid, &all->plr->hig);
+	make_images(all);
 	if (all->file->resol_x < all->plr->wid || all->file->resol_y < all->plr->hig)
 	{
 		all->plr->wid = all->file->resol_x;

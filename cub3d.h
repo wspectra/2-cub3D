@@ -32,37 +32,45 @@ typedef struct	s_plr
 	int map_pos_x;
 	int map_pos_y;
 
-	double ray_dir_x;
-	double ray_dir_y;
+	double	ray_dir_x;
+	double	ray_dir_y;
 
-	double vector_x;
-	double vector_y;
+	double	vector_x;
+	double	vector_y;
 
-	double plan_x;
-	double plan_y;
+	double	plan_x;
+	double	plan_y;
 
-	double side_x;
-	double side_y;
-	double delta_x;
-	double delta_y;
+	double	side_x;
+	double	side_y;
+	double	delta_x;
+	double	delta_y;
 
-	double wall_dist;
+	double	wall_dist;
 
-	int step_x;
-	int step_y;
+	int		step_x;
+	int		step_y;
 
-	int side;
-	int	hit;
+	int		side;
+	int		hit;
 
-	int				start_line;
-	int				end_line;
-	int				hight_line;
+	int		start_line;
+	int		end_line;
+	int		hight_line;
 
-	int	wid;
-	int hig;
-	double *wall_dist_array;
+	int		wid;
+	int		hig;
+	double	*wall_dist_array;
+
 
 }				t_plr;
+typedef struct	s_img
+{
+	void    *img;
+	int     img_width;
+	int     img_height;
+
+}				t_img;
 
 typedef struct	s_mlx
 {
@@ -74,6 +82,11 @@ typedef struct	s_mlx
 	int		line_length;
 	int		endian;
 	char	**map;
+	t_img	*north;
+	t_img	*west;
+	t_img	*south;
+	t_img	*east;
+	t_img	*sprite;
 }				t_mlx;
 
 typedef struct	s_file
@@ -90,6 +103,8 @@ typedef struct	s_file
 	int		error;
 	char	**map;
 }				t_file;
+
+
 
 typedef struct	s_all
 {
@@ -112,6 +127,8 @@ void			 delete_file(char **file);
 void			delete_structure_file(t_all *all);
 void			make_game(t_all *all);
 int 			ft_make_image(t_all *all);
+void 			what_color(t_all *all, int j, int hig);
+
 
 
 
