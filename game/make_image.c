@@ -144,7 +144,10 @@ void			ft_sky_earth(t_all *all, int j, int hig)
 	while (i < all->plr->end_line)
 	{
 //		my_mlx_pixel_put(all->mlx, j, i, what_color(all, j, hig));
-		my_mlx_pixel_put(all->mlx, j, i, 0x008c2323);
+		if (all->plr->side == 1)
+			my_mlx_pixel_put(all->mlx, j, i, 0x008c2323);
+		else
+			my_mlx_pixel_put(all->mlx, j, i, 0x008c9523);
 		i++;
 	}
 	i = all->plr->end_line;
