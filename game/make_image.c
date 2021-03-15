@@ -20,11 +20,6 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-//void draw_walls(t_all *all, int width, int high, char **map)
-//{
-//
-//}
-
 void	draw_floor_ceil(t_all *all, int width, int high)
 {
 	int x;
@@ -129,39 +124,40 @@ static void	ft_ray_dir(t_all *all)
 	}
 }
 
-
+t_img *what_texture(t_all *all)
+{
+	if (all->plr->side == 1 && all->plr->ray_dir_y > 0)
+		return(all->mlx->south);
+	else if (all->plr->side == 1 && all->plr->ray_dir_y < 0)
+		return(all->mlx->north);
+	else if (all->plr->side == 0 && all->plr->ray_dir_x > 0)
+		return(all->mlx->west);
+	else
+		return(all->mlx->east);
+}
 void			ft_sky_earth(t_all *all, int j, int hig)
 {
+	t_pixel 	pixel;
 	int			i;
+	int color;
+	int *dst;
+	t_img *image;
 
-	i = 0;
+	image = what_texture(all);
+	all->mlx->pixel = &pixel;
+	what_pixel(image, all, hig,  &pixel);
 
-	while (i < all->plr->start_line)
-	{
-		my_mlx_pixel_put(all->mlx, j, i, all->file->ceilling);
-		i++;
-	}
+	i = all->plr->start_line;
 	while (i < all->plr->end_line)
 	{
-//		my_mlx_pixel_put(all->mlx, j, i, what_color(all, j, hig));
-		if (all->plr->side == 1)
-			my_mlx_pixel_put(all->mlx, j, i, 0x008c2323);
-		else
-			my_mlx_pixel_put(all->mlx, j, i, 0x008c9523);
+		pixel.y = (int)pixel.pos & (image->img_width - 1);
+		pixel.pos += pixel.step;
+		dst = (void *)image->addr + (pixel.y * image->line_length +
+								   pixel.x * (image->bits_per_pixel / 8));
+		color = *(int*)dst;
+		my_mlx_pixel_put(all->mlx, j, i, color);
 		i++;
 	}
-	i = all->plr->end_line;
-	while (i < hig)
-	{
-		my_mlx_pixel_put(all->mlx, j, i, all->file->floor);
-		i++;
-	}
-}
-
-void ft_ver_line(t_all *all, int i, int hig)
-{
-	//!!!!
-	ft_sky_earth(all, i, hig);
 }
 
 int			draw_walls(t_all *all, int wid, int high)
@@ -176,7 +172,7 @@ int			draw_walls(t_all *all, int wid, int high)
 		ft_ray_dir(all);
 		ft_hit(all);
 		ft_start_and_end(all, high);
-		ft_ver_line(all, i, high);
+		ft_sky_earth(all, i, high);
 		all->plr->wall_dist_array[i] = all->plr->wall_dist;
 		i++;
 	}
@@ -185,10 +181,8 @@ int			draw_walls(t_all *all, int wid, int high)
 
 int	ft_make_image(t_all *all)
 {
-//	draw_floor_ceil(all, all->plr->wid, all->plr->hig);
-//	draw_walls(all, width, high, map);
+	draw_floor_ceil(all, all->plr->wid, all->plr->hig);
 	draw_walls(all, all->plr->wid, all->plr->hig);
 	mlx_put_image_to_window(all->mlx->mlx, all->mlx->win, all->mlx->img, 0, 0);
 	return (0);
-//	map++;
 }

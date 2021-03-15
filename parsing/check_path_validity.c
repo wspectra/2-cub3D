@@ -89,6 +89,9 @@ static void	get_path(char *str, int *i, char c, t_file *file)
 	path[p] = '\0';
 	while (str[k] == ' ')
 		k++;
+	if (path[p - 1] != 'm' && path[p - 2] != 'p' && path[p - 3] != 'x'
+		&& path[p - 4] != '.')
+		file->error = 1;
 	if (str[k] != '\0' || check_and_add_path(path, c, file) == 0)
 		file->error = 1;
 	free(path);

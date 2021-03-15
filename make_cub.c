@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../cub3d.h"
+#include "cub3d.h"
 
 void where_is_player(t_plr *plr, char **map)
 {

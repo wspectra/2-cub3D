@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void delete_file(char **file)
+void	delete_file(char **file)
 {
 	int i;
 
@@ -44,4 +44,3 @@ void	delete_structure_file(t_all *all)
 	free(all->file);
 	all->file = NULL;
 }
-

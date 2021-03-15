@@ -23,27 +23,6 @@ static int	check_file_name_validity(char *str)
 	else
 		return (0);
 }
-int			start(int argc, char *argv[])
-{
-	int fd;
-
-	if (argc == 2)
-	{
-		if (check_file_name_validity(argv[1]) == 1)
-		{
-			fd = open(argv[1], O_RDONLY);
-			if (fd < 0)
-				write(1, "Error\nCouldn't read file\n", 24);
-			else
-				read_file(fd);
-		}
-		else
-			write(1, "Error\nInvalid file name\n", 24);
-	}
-	else
-		write(1, "Error\nWrong number of arguments\n", 33);
-	return (0);
-}
 
 int			main(int argc, char *argv[])
 {

@@ -32,9 +32,6 @@ void where_is_player(t_all *all)
 				all->plr->map_pos_y = y;
 				all->plr->posX = x + 0.5;
 				all->plr->posY = y + 0.5;
-
-//				all->plr->x = x + 0.5;
-//				all->plr->y = y + 0.5;
 				all->plr->vector_x = 0;
 				all->plr->vector_y = -1;
 				all->plr->plan_x = -0.66;
@@ -47,9 +44,6 @@ void where_is_player(t_all *all)
 				all->plr->map_pos_y = y;
 				all->plr->posX = x + 0.5;
 				all->plr->posY = y + 0.5;
-
-//				all->plr->x = x + 0.5;
-//				all->plr->y = y + 0.5;
 				all->plr->vector_x = 0;
 				all->plr->vector_y = 1;
 				all->plr->plan_x = 0.66;
@@ -62,9 +56,6 @@ void where_is_player(t_all *all)
 				all->plr->map_pos_y = y;
 				all->plr->posX = x + 0.5;
 				all->plr->posY = y + 0.5;
-
-//				all->plr->x = x + 0.5;
-//				all->plr->y = y + 0.5;
 				all->plr->vector_x = -1;
 				all->plr->vector_y = 0;
 				all->plr->plan_x = 0;
@@ -77,9 +68,6 @@ void where_is_player(t_all *all)
 				all->plr->map_pos_y = y;
 				all->plr->posX = x + 0.5;
 				all->plr->posY = y + 0.5;
-
-//				all->plr->x = x + 0.5;
-//				all->plr->y = y + 0.5;
 				all->plr->vector_x = 1;
 				all->plr->vector_y = 0;
 				all->plr->plan_x = 0;
@@ -132,7 +120,7 @@ void	ft_move_rotate(t_all *all, double c)
 	all->plr->vector_x = all->plr->vector_x * cos(c * TURN)
 						 - all->plr->vector_y * sin(c * TURN);
 	all->plr->vector_y = old_x * sin(c * TURN) + all->plr->vector_y * cos(c *
-			TURN);
+	 		TURN);
 	old_plane = all->plr->plan_x;
 	all->plr->plan_x = all->plr->plan_x * cos(c * TURN) - all->plr->plan_y *
 			sin(c * TURN);
@@ -142,7 +130,6 @@ void	ft_move_rotate(t_all *all, double c)
 
 int		ft_close(t_all *all)
 {
-//	ft_clean(all);
 	mlx_destroy_window(all->mlx->mlx, all->mlx->win);
 	free(all->mlx->mlx);
 	exit(0);
@@ -171,43 +158,38 @@ int		press_key(int key, void *all)
 
 void xpm_to_image(void *mlx,t_img *img, char *path)
 {
-	int fd;
-
-	fd = open(path, O_RDONLY);
-	mlx_xpm_file_to_image(mlx, path, &img->img_width, &img->img_height);
-	close(fd);
+	img->img = mlx_xpm_file_to_image(mlx, path, &img->img_width,
+								&img->img_height);
+	img->addr = (void*)mlx_get_data_addr(img->img, &img->bits_per_pixel,
+									   &img->line_length, &img->endian);
 }
 
 void 	make_images(t_all *all)
 {
-	t_img north;
-	t_img south;
-	t_img west;
-	t_img east;
-	t_img sprite;
-
-	all->mlx->sprite = &sprite;
-	all->mlx->west = &west;
-	all->mlx->east = &east;
-	all->mlx->south = &south;
-	all->mlx->north = &north;
-
 	xpm_to_image(all->mlx->mlx, all->mlx->north, all->file->north);
 	xpm_to_image(all->mlx->mlx, all->mlx->west, all->file->west);
 	xpm_to_image(all->mlx->mlx, all->mlx->east, all->file->east);
 	xpm_to_image(all->mlx->mlx, all->mlx->south, all->file->south);
 	xpm_to_image(all->mlx->mlx, all->mlx->sprite, all->file->sprite);
-
-
 }
 
 void make_game(t_all *all)
 {
 	t_mlx mlx;
 	t_plr plr;
+	t_img north;
+	t_img south;
+	t_img west;
+	t_img east;
+	t_img sprite;
 
 	all->mlx = &mlx;
 	all->plr = &plr;
+	all->mlx->sprite = &sprite;
+	all->mlx->west = &west;
+	all->mlx->east = &east;
+	all->mlx->south = &south;
+	all->mlx->north = &north;
 	all->mlx->map = all->file->map;
 	where_is_player(all);
 	all->mlx->mlx= mlx_init();
@@ -223,7 +205,6 @@ void make_game(t_all *all)
 	all->mlx->addr = mlx_get_data_addr(all->mlx->img, &all->mlx->bits_per_pixel,
 									   &all->mlx->line_length,	&all->mlx->endian);
 
-//	init(all);
 	ft_make_image(all);
 	mlx_hook(all->mlx->win, 2, 0, press_key, all);
 	mlx_hook(all->mlx->win, 17, 0, ft_close, all);

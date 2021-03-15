@@ -41,11 +41,11 @@ void check_map_validity(t_all *all, int *start_map, int size_file, char **file)
 
 	start = *start_map;
 	if (all->file->error == 1)
-		return;
+		return ;
 	if (!(all->file->map = make_map(file, start, size_file)))
 	{
 		all->file->error = 1;
-		return;
+		return ;
 	}
 	y = 0;
 	plr = 0;
@@ -59,7 +59,7 @@ void check_map_validity(t_all *all, int *start_map, int size_file, char **file)
 				if (check_cell(all->file->map, x, y) != 0)
 				{
 					all->file->error = 1;
-					return;
+					return ;
 				}
 			}
 			else if (all->file->map[y][x] == 'N' || all->file->map[y][x] == 'W' ||
@@ -68,20 +68,20 @@ void check_map_validity(t_all *all, int *start_map, int size_file, char **file)
 				if (plr == 1)
 				{
 					all->file->error = 1;
-					return;
+					return ;
 				}
 				else
 					plr = 1;
 				if (check_cell(all->file->map, x, y) != 0)
 				{
 					all->file->error = 1;
-					return;
+					return ;
 				}
 			}
 			else if (all->file->map[y][x] != '1' && all->file->map[y][x] != ' ')
 			{
 				all->file->error = 1;
-				return;
+				return ;
 			}
 			x++;
 		}
