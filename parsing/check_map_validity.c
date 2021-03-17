@@ -40,6 +40,7 @@ void check_map_validity(t_all *all, int *start_map, int size_file, char **file)
 	int plr;
 
 	start = *start_map;
+	all->file->sp_num = 0;
 	if (all->file->error == 1)
 		return ;
 	if (!(all->file->map = make_map(file, start, size_file)))
@@ -56,6 +57,8 @@ void check_map_validity(t_all *all, int *start_map, int size_file, char **file)
 		{
 			if (all->file->map[y][x] == '0' || all->file->map[y][x] == '2')
 			{
+				if (all->file->map[y][x] == '2')
+					all->file->sp_num++;
 				if (check_cell(all->file->map, x, y) != 0)
 				{
 					all->file->error = 1;

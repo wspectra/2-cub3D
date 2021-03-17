@@ -12,7 +12,7 @@
 
 #include "./../cub3d.h"
 
-void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
+static void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
 
@@ -135,7 +135,7 @@ t_img *what_texture(t_all *all)
 	else
 		return(all->mlx->east);
 }
-void			ft_sky_earth(t_all *all, int j, int hig)
+static void			ft_sky_earth(t_all *all, int j, int hig)
 {
 	t_pixel 	pixel;
 	int			i;
@@ -181,8 +181,11 @@ int			draw_walls(t_all *all, int wid, int high)
 
 int	ft_make_image(t_all *all)
 {
+
 	draw_floor_ceil(all, all->plr->wid, all->plr->hig);
 	draw_walls(all, all->plr->wid, all->plr->hig);
+	make_sprite(all, all->plr->wid, all->plr->hig);
+//	draw_coin(all, all->plr->wid, all->plr->hig);
 	mlx_put_image_to_window(all->mlx->mlx, all->mlx->win, all->mlx->img, 0, 0);
 	return (0);
 }

@@ -172,6 +172,34 @@ void 	make_images(t_all *all)
 	xpm_to_image(all->mlx->mlx, all->mlx->south, all->file->south);
 	xpm_to_image(all->mlx->mlx, all->mlx->sprite, all->file->sprite);
 }
+void sprite_struct_init(t_all *all)
+{
+	t_sprite *sprite;
+	int x;
+	int y;
+	int z;
+
+	sprite = (t_sprite*)malloc(sizeof(t_sprite) * (all->file->sp_num + 1));
+	z = 0;
+	y = 0;
+
+	while (all->file->map[y] != NULL)
+	{
+		x = 0;
+		while(all->file->map[y][x] != '\0')
+		{
+			x++;
+			if (all->file->map[y][x] == '2')
+			{
+				sprite[z].posX = x + 0.5;
+				sprite[z].posY = y + 0.5;
+				z++;
+			}
+		}
+		y++;
+	}
+	all->mlx->sprt = sprite;
+}
 
 void make_game(t_all *all)
 {
@@ -182,7 +210,6 @@ void make_game(t_all *all)
 	t_img west;
 	t_img east;
 	t_img sprite;
-
 	all->mlx = &mlx;
 	all->plr = &plr;
 	all->mlx->sprite = &sprite;
@@ -191,9 +218,12 @@ void make_game(t_all *all)
 	all->mlx->south = &south;
 	all->mlx->north = &north;
 	all->mlx->map = all->file->map;
+	sprite_struct_init(all);
+
 	where_is_player(all);
+
 	all->mlx->mlx= mlx_init();
-	mlx_get_screen_size(all->mlx->mlx, &all->plr->wid, &all->plr->hig);
+		mlx_get_screen_size(all->mlx->mlx, &all->plr->wid, &all->plr->hig);
 	make_images(all);
 	if (all->file->resol_x < all->plr->wid || all->file->resol_y < all->plr->hig)
 	{

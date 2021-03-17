@@ -21,8 +21,31 @@
 # include "./libft/libft.h"
 # include "./mlx/mlx.h"
 
-# define SPEED 0.5
-# define TURN 0.5
+# define SPEED 0.2
+# define TURN 0.2
+
+typedef struct s_sprite
+{
+	double posX;
+	double posY;
+	double dist;
+	double comp_x;
+	double comp_y;
+	double inv_det;
+	double new_x;
+	double new_y;
+	int		screen_x;
+	int 	hight;
+	int		width;
+	int 	draw_start_y;
+	int 	draw_start_x;
+	int 	draw_end_y;
+	int 	draw_end_x;
+	int		tex_x;
+	int 	tex_y;
+	int		d;
+
+}				t_sprite;
 
 typedef struct	s_plr
 {
@@ -105,6 +128,7 @@ typedef struct	s_mlx
 	t_img	*east;
 	t_img	*sprite;
 	t_pixel	*pixel;
+	t_sprite  *sprt;
 }				t_mlx;
 
 typedef struct	s_file
@@ -120,6 +144,7 @@ typedef struct	s_file
 	int		floor;
 	int		error;
 	char	**map;
+	int 	sp_num;
 }				t_file;
 
 
@@ -146,6 +171,7 @@ void			delete_structure_file(t_all *all);
 void			make_game(t_all *all);
 int 			ft_make_image(t_all *all);
 void 			what_pixel(t_img *img, t_all *all, int hig,  t_pixel *pixel);
+void			make_sprite(t_all *all, int wid, int high);
 
 
 
