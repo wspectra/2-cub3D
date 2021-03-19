@@ -129,6 +129,7 @@ typedef struct	s_mlx
 	t_img	*sprite;
 	t_pixel	*pixel;
 	t_sprite  *sprt;
+	int 	screenshot;
 }				t_mlx;
 
 typedef struct	s_file
@@ -145,6 +146,7 @@ typedef struct	s_file
 	int		error;
 	char	**map;
 	int 	sp_num;
+	int 	save;
 }				t_file;
 
 
@@ -156,8 +158,8 @@ typedef struct	s_all
 	t_plr	*plr;
 }				t_all;
 
-void			read_file(int fd);
-void			parsing (char **file);
+void			read_file(int fd, int save);
+void			parsing (char **file, int save);
 void			print_map(t_all *all);
 void			make_cub(t_all *all);
 void			check_colors_validity(t_file *file, char *str, int i, char c);
@@ -166,12 +168,14 @@ void			check_path_validity(t_file *file, char *str, int i);
 void			check_map_validity(t_all *all, int *start_map,
 								   int size_file, char **file);
 int				check_cell(char **map, int x, int y);
+int 			check_diag(char **map, int x, int y, int size);
 void			 delete_file(char **file);
 void			delete_structure_file(t_all *all);
 void			make_game(t_all *all);
 int 			ft_make_image(t_all *all);
 void 			what_pixel(t_img *img, t_all *all, int hig,  t_pixel *pixel);
 void			make_sprite(t_all *all, int wid, int high);
+void			make_screenshot(t_all *all);
 
 
 

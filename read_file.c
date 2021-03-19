@@ -31,7 +31,7 @@ static char	**write_down(t_list *begin, int size)
 	return (file);
 }
 
-void		read_file(int fd)
+void		read_file(int fd, int save)
 {
 	char	*line;
 	char	**file;
@@ -48,7 +48,7 @@ void		read_file(int fd)
 		write(1, "Error\nMemory allocation fail\n", 31);
 		return ;
 	}
-	parsing(file);
+	parsing(file, save);
 	delete_file(file);
 	ft_lstclear(&list_start, free);
 }

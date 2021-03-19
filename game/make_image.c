@@ -181,11 +181,14 @@ int			draw_walls(t_all *all, int wid, int high)
 
 int	ft_make_image(t_all *all)
 {
-
 	draw_floor_ceil(all, all->plr->wid, all->plr->hig);
 	draw_walls(all, all->plr->wid, all->plr->hig);
 	make_sprite(all, all->plr->wid, all->plr->hig);
 //	draw_coin(all, all->plr->wid, all->plr->hig);
-	mlx_put_image_to_window(all->mlx->mlx, all->mlx->win, all->mlx->img, 0, 0);
+	mlx_put_image_to_window(all->mlx->mlx, all->mlx->win, all->mlx->img, 0,
+							0);
+	if (all->mlx->screenshot == 0 && all->file->save == 1)
+		make_screenshot(all);
+
 	return (0);
 }

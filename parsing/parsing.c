@@ -52,7 +52,7 @@ int check_errors(t_file *file)
 	}
 	return (0);
 }
-void		parsing(char **file)
+void		parsing(char **file, int save)
 {
 	t_all	all;
 	int		x;
@@ -61,6 +61,7 @@ void		parsing(char **file)
 	make_file_structure(&all);
 	y = 0;
 	x = 0;
+	all.file->save = save;
 	while (file[y] != NULL)
 	{
 		x = 0;

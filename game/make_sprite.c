@@ -30,6 +30,7 @@ void sorting(t_all *all)
 	cnt = all->file->sp_num - 1;
 	while (cnt > 0)
 	{
+		x = 0;
 		while (x < all->file->sp_num)
 		{
 			if (all->mlx->sprt[x].dist < all->mlx->sprt[x + 1].dist)
@@ -135,20 +136,14 @@ void sprite_dist(t_all *all)
 
 		i++;
 	}
+
 }
 void	make_sprite(t_all *all, int wid, int high)
 {
 	sprite_dist(all);
 	sorting(all);
-	if (all->mlx->sprt[all->file->sp_num - 1].posX == all->plr->posX &&
-			all->mlx->sprt[all->file->sp_num - 1].posY == all->plr->posY)
-		all->file->sp_num--;
+//	if (all->mlx->sprt[all->file->sp_num - 1].posX == all->plr->posX &&
+//			all->mlx->sprt[all->file->sp_num - 1].posY == all->plr->posY)
+//		all->file->sp_num--;
 	sprite_new_pposition(all, wid, high);
-	int x = 0;
-	while (x < all->file->sp_num)
-	{
-		printf("x = %f y = %f dist = %f\n", all->mlx->sprt[x].posX,
-			   all->mlx->sprt[x].posY, all->mlx->sprt[x].dist);
-		x++;
-	}
 }

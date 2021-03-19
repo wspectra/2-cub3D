@@ -6,6 +6,7 @@ set(CMAKE_C_STANDARD 99)
 include_directories(.)
 include_directories(mlx)
 include_directories(libft)
+include_directories(textures)
 
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -L. -lmlx -framework OpenGL -framework AppKit")
 add_executable(cub3D
@@ -18,11 +19,13 @@ add_executable(cub3D
         parsing/check_path_validity.c
         parsing/check_map_validity.c
         parsing/check_cell.c
+        parsing/check_diag.c
         delete.c
         game/make_game.c
         game/make_image.c
         game/make_walls.c
         game/make_sprite.c
+        game/make_screenshot.c
         #        make_cub.c
         ./libft/ft_memset.c ./libft/ft_bzero.c ./libft/ft_memcpy.c ./libft/ft_memccpy.c ./libft/ft_memmove.c
         ./libft/ft_strlen.c ./libft/ft_strlcpy.c ./libft/ft_atoi.c ./libft/ft_isalpha.c ./libft/ft_isdigit.c

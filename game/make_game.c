@@ -210,6 +210,7 @@ void make_game(t_all *all)
 	t_img west;
 	t_img east;
 	t_img sprite;
+//	int y = 0;
 	all->mlx = &mlx;
 	all->plr = &plr;
 	all->mlx->sprite = &sprite;
@@ -219,9 +220,8 @@ void make_game(t_all *all)
 	all->mlx->north = &north;
 	all->mlx->map = all->file->map;
 	sprite_struct_init(all);
-
 	where_is_player(all);
-
+	all->mlx->screenshot = 0;
 	all->mlx->mlx= mlx_init();
 		mlx_get_screen_size(all->mlx->mlx, &all->plr->wid, &all->plr->hig);
 	make_images(all);
@@ -232,6 +232,7 @@ void make_game(t_all *all)
 	}
 	all->mlx->win = mlx_new_window(all->mlx->mlx, all->plr->wid, all->plr->hig, "Cub3D");
 	all->mlx->img = mlx_new_image(all->mlx->mlx, all->plr->wid, all->plr->hig);
+
 	all->mlx->addr = mlx_get_data_addr(all->mlx->img, &all->mlx->bits_per_pixel,
 									   &all->mlx->line_length,	&all->mlx->endian);
 
