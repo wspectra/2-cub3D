@@ -33,7 +33,11 @@ static int	find_number(char *str, int *i)
 	}
 	if ((res == 214748364 && str[k + 1] > '7') ||
 		(res > 214748364 && ft_isdigit(str[k]) == 1))
-		res = -1;
+	{
+		res = 2147483645;
+		while (ft_isdigit(str[k]) == 1)
+			k++;
+	}
 	while (str[k] == ' ')
 		k++;
 	*i = k;

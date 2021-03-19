@@ -240,4 +240,5 @@ void make_game(t_all *all)
 	mlx_hook(all->mlx->win, 2, 0, press_key, all);
 	mlx_hook(all->mlx->win, 17, 0, ft_close, all);
 	mlx_loop(all->mlx->mlx);
+
 }

@@ -4,7 +4,7 @@ SO ./textures/greystone.xpm
 WE ./textures/redbrick.xpm
 EA ./textures/wood.xpm
 S ./textures/barrel.xpm
-F 36,36,36
+F 177,36,36
 C 0,0,0
 
 11111111111111111

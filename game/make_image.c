@@ -185,6 +185,7 @@ int	ft_make_image(t_all *all)
 	draw_walls(all, all->plr->wid, all->plr->hig);
 	make_sprite(all, all->plr->wid, all->plr->hig);
 //	draw_coin(all, all->plr->wid, all->plr->hig);
+	free(all->plr->wall_dist_array);
 	mlx_put_image_to_window(all->mlx->mlx, all->mlx->win, all->mlx->img, 0,
 							0);
 	if (all->mlx->screenshot == 0 && all->file->save == 1)

@@ -94,7 +94,7 @@ void sprite_new_pposition(t_all *all, int wid, int high)
 					all->mlx->sprite->img_width / all->mlx->sprt[i].width) / 256;
 			if (all->mlx->sprt[i].new_y > 0 && start > 0 &&
 			start < wid && all->mlx->sprt[i].new_y <
-			all->plr->wall_dist_array[start])
+			all->plr->wall_dist_array[start] && all->mlx->sprt[i].dist > 0.09)
 			{
 				j = all->mlx->sprt[i].draw_start_y;
 				while (j < all->mlx->sprt[i].draw_end_y)

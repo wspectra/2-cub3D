@@ -1,4 +1,4 @@
-R 1920 1080
+R 100000000000 100000000000
 NO ./textures/black_wall.xpm
 SO ./textures/grey_wall.xpm
 WE ./textures/red_wall.xpm
