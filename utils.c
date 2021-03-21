@@ -1,0 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wspectra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/21 18:41:42 by wspectra          #+#    #+#             */
+/*   Updated: 2021/03/21 18:41:44 by wspectra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void	xpm_to_image(void *mlx, t_img *img, char *path)
+{
+	img->img = mlx_xpm_file_to_image(mlx, path, &img->img_width,
+									&img->img_height);
+	img->addr = (void *)mlx_get_data_addr(img->img, &img->bits_per_pixel,
+									&img->line_length, &img->endian);
+}
+
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
+void	draw_floor_ceil(t_all *all, int width, int high)
+{
+	int x;
+	int y;
+
+	x = 0;
+	while (x < width)
+	{
+		y = 0;
+		while (y < high)
+		{
+			if (y < (high / 2))
+				my_mlx_pixel_put(all->mlx, x, y, all->file->ceilling);
+			if (y >= (high / 2))
+				my_mlx_pixel_put(all->mlx, x, y, all->file->floor);
+			y++;
+		}
+		x++;
+	}
+}

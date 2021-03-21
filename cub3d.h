@@ -147,6 +147,7 @@ typedef struct	s_file
 	char	**map;
 	int 	sp_num;
 	int 	save;
+	int		plr;
 }				t_file;
 
 
@@ -176,9 +177,18 @@ int 			ft_make_image(t_all *all);
 void 			what_pixel(t_img *img, t_all *all, int hig,  t_pixel *pixel);
 void			make_sprite(t_all *all, int wid, int high);
 void			make_screenshot(t_all *all);
-
-
-
+void			make_file_structure(t_all *all);
+void			delete_lsts(t_list **lst);
+void 			delete_mlx_struct(t_all *all);
+void 			make_mlx_struct(t_all *all);
+void			sprite_struct_init(t_all *all);
+void 			make_images(t_all *all);
+void			xpm_to_image(void *mlx,t_img *img, char *path);
+int				press_key(int key, void *all);
+int				ft_close(t_all *all);
+void			draw_textures(t_all *all, int j, int hig);
+void			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void			draw_floor_ceil(t_all *all, int width, int high);
 
 
 #endif

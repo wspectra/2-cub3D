@@ -14,6 +14,7 @@ add_executable(cub3D
         main.c
         read_file.c
         parsing/parsing.c
+        make_structure.c
         parsing/check_resolution_validity.c
         parsing/check_colors_validity.c
         parsing/check_path_validity.c
@@ -23,7 +24,7 @@ add_executable(cub3D
         delete.c
         game/make_game.c
         game/make_image.c
-        game/make_walls.c
+        game/draw_textures.c
         game/make_sprite.c
         game/make_screenshot.c
         #        make_cub.c
@@ -36,5 +37,5 @@ add_executable(cub3D
         ./libft/ft_putendl_fd.c ./libft/ft_putnbr_fd.c ./libft/ft_strtrim.c ./libft/ft_itoa.c
         ./libft/ft_lstnew.c ./libft/ft_lstadd_front.c ./libft/ft_lstsize.c ./libft/ft_lstlast.c
         ./libft/ft_lstadd_back.c ./libft/ft_lstdelone.c ./libft/ft_lstclear.c ./libft/ft_lstiter.c
-        ./libft/ft_lstmap.c ./libft/get_next_line.c
+        ./libft/ft_lstmap.c ./libft/get_next_line.c ./game/moves.c ./utils.c
         )

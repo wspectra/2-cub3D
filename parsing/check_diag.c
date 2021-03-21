@@ -28,7 +28,7 @@ int	check_up_left(char **map, int x, int y)
 int	check_down_left(int size, char **map, int x, int y)
 {
 	while (((int)ft_strlen(map[y]) > x) && y < size && x > 0 &&
-		   ft_strchr("02NSWE", map[y][x]))
+			ft_strchr("02NSWE", map[y][x]))
 	{
 		y++;
 		x--;
@@ -54,7 +54,7 @@ int	check_up_right(char **map, int x, int y)
 int	check_down_right(int size, char **map, int x, int y)
 {
 	while (((int)ft_strlen(map[y]) > x) && y < size &&
-		   ft_strchr("02NSWE", map[y][x]))
+			ft_strchr("02NSWE", map[y][x]))
 	{
 		y++;
 		x++;
@@ -64,7 +64,7 @@ int	check_down_right(int size, char **map, int x, int y)
 	return (0);
 }
 
-int 			check_diag(char **map, int x, int y, int size)
+int	check_diag(char **map, int x, int y, int size)
 {
 	int up_left;
 	int down_left;
@@ -75,7 +75,6 @@ int 			check_diag(char **map, int x, int y, int size)
 	down_left = check_down_left(size, map, x, y);
 	up_right = check_up_right(map, x, y);
 	down_right = check_down_right(size, map, x, y);
-
 	if (up_left == 0 && down_left == 0 && up_right == 0 && down_right == 0)
 		return (0);
 	return (1);

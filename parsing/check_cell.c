@@ -14,7 +14,8 @@
 
 int	check_up(char **map, int x, int y)
 {
-	while (((int)ft_strlen(map[y]) > x) && ft_strchr("02NSWE", map[y][x]) && y > 0)
+	while (((int)ft_strlen(map[y]) > x) && ft_strchr("02NSWE",
+											map[y][x]) && y > 0)
 	{
 		y--;
 	}

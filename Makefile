@@ -16,8 +16,9 @@ SRCS		= main.c read_file.c\
 			./parsing/parsing.c ./parsing/check_resolution_validity.c\
 			./parsing/check_colors_validity.c ./parsing/check_path_validity.c\
 			./parsing/check_map_validity.c ./parsing/check_cell.c\
-			delete.c ./game/make_game.c ./game/make_image.c ./game/make_walls.c\
-			./game/make_sprite.c ./game/make_screenshot.c parsing/check_diag.c
+			delete.c ./game/make_game.c ./game/make_image.c game/draw_textures.c\
+			./game/make_sprite.c ./game/make_screenshot.c parsing/check_diag.c\
+			make_structure.c ./game/moves.c utils.c
 
 OBJS		=  $(SRCS:.c=.o)
 

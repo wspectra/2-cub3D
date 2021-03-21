@@ -12,14 +12,6 @@
 
 #include "./../cub3d.h"
 
-static void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
 void sorting(t_all *all)
 {
 	t_sprite tmp;
@@ -115,8 +107,6 @@ void sprite_new_pposition(t_all *all, int wid, int high)
 			}
 			start++;
 		}
-
-
 		i++;
 	}
 }
@@ -142,8 +132,5 @@ void	make_sprite(t_all *all, int wid, int high)
 {
 	sprite_dist(all);
 	sorting(all);
-//	if (all->mlx->sprt[all->file->sp_num - 1].posX == all->plr->posX &&
-//			all->mlx->sprt[all->file->sp_num - 1].posY == all->plr->posY)
-//		all->file->sp_num--;
 	sprite_new_pposition(all, wid, high);
 }

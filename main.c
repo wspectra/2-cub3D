@@ -24,8 +24,6 @@ static int	check_file_name_validity(char *str)
 		return (0);
 }
 
-
-
 int			main(int argc, char *argv[])
 {
 	int fd;
@@ -37,14 +35,10 @@ int			main(int argc, char *argv[])
 		if (argc == 3 && ft_strncmp("--save", argv[2], 7) == 0)
 			save = 1;
 		if (argc == 3 && ft_strncmp("--save", argv[2], 7) != 0)
+			save = -1;
+		if (check_file_name_validity(argv[1]) == 1 && (save == 1 || save == 0))
 		{
-			write(1, "Error\nWrong second arg\n", 23);
-			return (0);
-		}
-		if (check_file_name_validity(argv[1]) == 1)
-		{
-			fd = open(argv[1], O_RDONLY);
-			if (fd < 0)
+			if ((fd = open(argv[1], O_RDONLY)) < 0)
 				write(1, "Error\nCouldn't read file\n", 24);
 			else
 				read_file(fd, save);

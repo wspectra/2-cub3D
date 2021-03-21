@@ -22,15 +22,9 @@ static int	find_number(char *str, int *i)
 	while (str[k] == ' ')
 		k++;
 	while (ft_isdigit(str[k]) == 1 && res < 214748364)
-	{
-		res = res * 10 + str[k] - 48;
-		k++;
-	}
+		res = res * 10 + str[k++] - 48;
 	if (res == 214748364 && str[k] <= '7')
-	{
-		res = res * 10 + str[k] - 48;
-		k++;
-	}
+		res = res * 10 + str[k++] - 48;
 	if ((res == 214748364 && str[k + 1] > '7') ||
 		(res > 214748364 && ft_isdigit(str[k]) == 1))
 	{

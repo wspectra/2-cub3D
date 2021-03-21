@@ -50,5 +50,5 @@ void		read_file(int fd, int save)
 	}
 	parsing(file, save);
 	delete_file(file);
-	ft_lstclear(&list_start, free);
+	delete_lsts(&list_start);
 }
