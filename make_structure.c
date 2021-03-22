@@ -49,8 +49,8 @@ void	sprite_struct_init(t_all *all)
 			x++;
 			if (all->file->map[y][x] == '2')
 			{
-				sprite[z].posX = x + 0.5;
-				sprite[z].posY = y + 0.5;
+				sprite[z].pos_x = x + 0.5;
+				sprite[z].pos_y = y + 0.5;
 				z++;
 			}
 		}

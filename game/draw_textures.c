@@ -15,10 +15,10 @@
 void	what_pixel(t_img *img, t_all *all, int hig, t_pixel *pixel)
 {
 	if (all->plr->side == 0)
-		pixel->wall = all->plr->posY
+		pixel->wall = all->plr->pos_y
 			+ all->plr->wall_dist * all->plr->ray_dir_y;
 	else
-		pixel->wall = all->plr->posX
+		pixel->wall = all->plr->pos_x
 			+ all->plr->wall_dist * all->plr->ray_dir_x;
 	pixel->wall -= floor(pixel->wall);
 	pixel->x = (int)(pixel->wall * img->img_height);

@@ -29,7 +29,7 @@ void	sprite_new_position(t_mlx *mlx, t_plr *plr, int i)
 	mlx->sprt[i].draw_end_y = mlx->sprt[i].hight / 2 + plr->hig / 2;
 	if (mlx->sprt[i].draw_end_y >= plr->hig)
 		mlx->sprt[i].draw_end_y = plr->hig - 1;
-	mlx->sprt[i].width = abs((int)(plr->hig / mlx->sprt[i].new_y));
+	mlx->sprt[i].width = abs((int)(plr->wid / mlx->sprt[i].new_y));
 	mlx->sprt[i].draw_start_x = -mlx->sprt[i].width / 2 + mlx->sprt[i].screen_x;
 	if (mlx->sprt[i].draw_start_x < 0)
 		mlx->sprt[i].draw_start_x = 0;
@@ -96,12 +96,12 @@ void	make_sprite(t_all *all)
 	i = 0;
 	while (i < all->file->sp_num)
 	{
-		all->mlx->sprt[i].dist = (all->plr->posX - all->mlx->sprt[i].posX) *
-			(all->plr->posX - all->mlx->sprt[i].posX) +
-			(all->plr->posY - all->mlx->sprt[i].posY) *
-			(all->plr->posY - all->mlx->sprt[i].posY);
-		all->mlx->sprt[i].comp_x = all->mlx->sprt[i].posX - all->plr->posX;
-		all->mlx->sprt[i].comp_y = all->mlx->sprt[i].posY - all->plr->posY;
+		all->mlx->sprt[i].dist = (all->plr->pos_x - all->mlx->sprt[i].pos_x) *
+				(all->plr->pos_x - all->mlx->sprt[i].pos_x) +
+				(all->plr->pos_y - all->mlx->sprt[i].pos_y) *
+				(all->plr->pos_y - all->mlx->sprt[i].pos_y);
+		all->mlx->sprt[i].comp_x = all->mlx->sprt[i].pos_x - all->plr->pos_x;
+		all->mlx->sprt[i].comp_y = all->mlx->sprt[i].pos_y - all->plr->pos_y;
 		i++;
 	}
 	sorting_sprite(all);

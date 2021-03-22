@@ -1,15 +1,17 @@
-R 450 450
-NO ./textures/bluestone.xpm
-SO ./textures/greystone.xpm
-WE ./textures/redbrick.xpm
-EA ./textures/wood.xpm
+R 1100 1100
+
+NO ./textures/eagle.xpm
+SO ./textures/eagle.xpm
+WE ./textures/eagle.xpm
+EA ./textures/eagle.xpm
 S ./textures/barrel.xpm
-F 177,36,36
+
+F 255,36,36
 C 0,0,0
 
 11111111111111111
-1E000000000000001
+10000000000000001
 10000000000000001
 10000022200000001
-10000000000000001
+1000000000000S001
 11111111111111111

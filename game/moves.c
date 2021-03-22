@@ -21,22 +21,22 @@ int		ft_close(t_all *all)
 
 void	ft_move_up_down(t_all *all, double c)
 {
-	if (all->file->map[(int)(all->plr->posY + c * all->plr->vector_y * SPEED)]
-		[(int)all->plr->posX] != '1')
-		all->plr->posY += all->plr->vector_y * c * SPEED;
-	if (all->file->map[(int)(all->plr->posY)]
-		[(int)(all->plr->posX + c * all->plr->vector_x * SPEED)] != '1')
-		all->plr->posX += all->plr->vector_x * c * SPEED;
+	if (all->file->map[(int)(all->plr->pos_y + c * all->plr->vector_y * SPEED)]
+		[(int)all->plr->pos_x] != '1')
+		all->plr->pos_y += all->plr->vector_y * c * SPEED;
+	if (all->file->map[(int)(all->plr->pos_y)]
+		[(int)(all->plr->pos_x + c * all->plr->vector_x * SPEED)] != '1')
+		all->plr->pos_x += all->plr->vector_x * c * SPEED;
 }
 
 void	ft_move_left_right(t_all *all, double c)
 {
-	if (all->file->map[(int)(all->plr->posY - c * all->plr->vector_x * SPEED)]
-		[(int)all->plr->posX] != '1')
-		all->plr->posY -= all->plr->vector_x * c * SPEED;
-	if (all->file->map[(int)(all->plr->posY)]
-		[(int)(all->plr->posX + c * all->plr->vector_y * SPEED)] != '1')
-		all->plr->posX += all->plr->vector_y * c * SPEED;
+	if (all->file->map[(int)(all->plr->pos_y - c * all->plr->vector_x * SPEED)]
+		[(int)all->plr->pos_x] != '1')
+		all->plr->pos_y -= all->plr->vector_x * c * SPEED;
+	if (all->file->map[(int)(all->plr->pos_y)]
+		[(int)(all->plr->pos_x + c * all->plr->vector_y * SPEED)] != '1')
+		all->plr->pos_x += all->plr->vector_y * c * SPEED;
 }
 
 void	ft_move_rotate(t_all *all, double c)
@@ -58,6 +58,10 @@ void	ft_move_rotate(t_all *all, double c)
 
 int		press_key(int key, void *all)
 {
+	t_all *new;
+
+	new = (t_all*)all;
+	mlx_destroy_image(new->mlx->mlx, new->mlx->img);
 	if (key == 13)
 		ft_move_up_down(all, 1);
 	else if (key == 1)

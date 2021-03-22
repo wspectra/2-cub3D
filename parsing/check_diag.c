@@ -20,7 +20,7 @@ int	check_up_left(char **map, int x, int y)
 		y--;
 		x--;
 	}
-	if (ft_strlen(map[y]) == (size_t) -1)
+	if (ft_strlen(map[y]) == (size_t)-1)
 		return (1);
 	if (map[y][x] != '1')
 		return (1);
@@ -35,7 +35,7 @@ int	check_down_left(int size, char **map, int x, int y)
 		y++;
 		x--;
 	}
-	if (ft_strlen(map[y]) == (size_t) -1)
+	if (ft_strlen(map[y]) == (size_t)-1)
 		return (1);
 	if (map[y][x] != '1')
 		return (1);
@@ -50,7 +50,7 @@ int	check_up_right(char **map, int x, int y)
 		y--;
 		x++;
 	}
-	if (ft_strlen(map[y]) == (size_t) -1)
+	if (ft_strlen(map[y]) == (size_t)-1)
 		return (1);
 	if (map[y][x] != '1')
 		return (1);
@@ -65,7 +65,7 @@ int	check_down_right(int size, char **map, int x, int y)
 		y++;
 		x++;
 	}
-	if (ft_strlen(map[y]) == (size_t) -1)
+	if (ft_strlen(map[y]) == (size_t)-1)
 		return (1);
 	if (map[y][x] != '1')
 		return (1);
