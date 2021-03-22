@@ -19,6 +19,8 @@ int	check_up(char **map, int x, int y)
 	{
 		y--;
 	}
+	if (ft_strlen(map[y]) == (size_t) -1)
+		return (1);
 	if (map[y][x] != '1')
 		return (1);
 	return (0);
@@ -31,6 +33,8 @@ int	check_down(int size, char **map, int x, int y)
 	{
 		y++;
 	}
+	if (ft_strlen(map[y]) == (size_t) -1)
+		return (1);
 	if (map[y][x] != '1')
 		return (1);
 	return (0);

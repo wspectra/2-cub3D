@@ -48,3 +48,28 @@ void	draw_floor_ceil(t_all *all, int width, int high)
 		x++;
 	}
 }
+
+void	sorting_sprite(t_all *all)
+{
+	t_sprite	tmp;
+	int			x;
+	int			cnt;
+
+	x = 0;
+	cnt = all->file->sp_num - 1;
+	while (cnt > 0)
+	{
+		x = 0;
+		while (x < all->file->sp_num)
+		{
+			if (all->mlx->sprt[x].dist < all->mlx->sprt[x + 1].dist)
+			{
+				tmp = all->mlx->sprt[x];
+				all->mlx->sprt[x] = all->mlx->sprt[x + 1];
+				all->mlx->sprt[x + 1] = tmp;
+			}
+			x++;
+		}
+		cnt--;
+	}
+}

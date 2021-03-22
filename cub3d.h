@@ -175,7 +175,7 @@ void			delete_structure_file(t_all *all);
 void			make_game(t_all *all);
 int 			ft_make_image(t_all *all);
 void 			what_pixel(t_img *img, t_all *all, int hig,  t_pixel *pixel);
-void			make_sprite(t_all *all, int wid, int high);
+void			make_sprite(t_all *all);
 void			make_screenshot(t_all *all);
 void			make_file_structure(t_all *all);
 void			delete_lsts(t_list **lst);
@@ -189,6 +189,6 @@ int				ft_close(t_all *all);
 void			draw_textures(t_all *all, int j, int hig);
 void			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void			draw_floor_ceil(t_all *all, int width, int high);
-
+void			sorting_sprite(t_all *all);
 
 #endif

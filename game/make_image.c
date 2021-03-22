@@ -111,7 +111,7 @@ int			ft_make_image(t_all *all)
 {
 	draw_floor_ceil(all, all->plr->wid, all->plr->hig);
 	draw_walls(all, all->plr->wid, all->plr->hig);
-	make_sprite(all, all->plr->wid, all->plr->hig);
+	make_sprite(all);
 	free(all->plr->wall_dist_array);
 	if (all->mlx->screenshot == 0 && all->file->save == 1)
 		make_screenshot(all);

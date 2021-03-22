@@ -12,105 +12,84 @@
 
 #include "./../cub3d.h"
 
-void sorting(t_all *all)
+void	sprite_new_position(t_mlx *mlx, t_plr *plr, int i)
 {
-	t_sprite tmp;
-	int x;
-	int cnt;
+	mlx->sprt[i].inv_det = 1.0 / (plr->plan_x *
+		plr->vector_y - plr->vector_x * plr->plan_y);
+	mlx->sprt[i].new_x = mlx->sprt[i].inv_det * (plr->vector_y *
+			mlx->sprt[i].comp_x - plr->vector_x * mlx->sprt[i].comp_y);
+	mlx->sprt[i].new_y = mlx->sprt[i].inv_det * (-plr->plan_y *
+			mlx->sprt[i].comp_x + plr->plan_x * mlx->sprt[i].comp_y);
+	mlx->sprt[i].screen_x = (int)(plr->wid / 2)
+			* (1 + mlx->sprt[i].new_x / mlx->sprt[i].new_y);
+	mlx->sprt[i].hight = abs((int)(plr->hig / (mlx->sprt[i].new_y)));
+	mlx->sprt[i].draw_start_y = -mlx->sprt[i].hight / 2 + plr->hig / 2;
+	if (mlx->sprt[i].draw_start_y < 0)
+		mlx->sprt[i].draw_start_y = 0;
+	mlx->sprt[i].draw_end_y = mlx->sprt[i].hight / 2 + plr->hig / 2;
+	if (mlx->sprt[i].draw_end_y >= plr->hig)
+		mlx->sprt[i].draw_end_y = plr->hig - 1;
+	mlx->sprt[i].width = abs((int)(plr->hig / mlx->sprt[i].new_y));
+	mlx->sprt[i].draw_start_x = -mlx->sprt[i].width / 2 + mlx->sprt[i].screen_x;
+	if (mlx->sprt[i].draw_start_x < 0)
+		mlx->sprt[i].draw_start_x = 0;
+	mlx->sprt[i].draw_end_x = mlx->sprt[i].width / 2 + mlx->sprt[i].screen_x;
+	if (mlx->sprt[i].draw_end_x >= plr->wid)
+		mlx->sprt[i].draw_end_x = plr->wid - 1;
+}
 
-	x = 0;
-	cnt = all->file->sp_num - 1;
-	while (cnt > 0)
+void	draw_sprite(int i, int start, t_mlx *mlx, t_plr *plr)
+{
+	int j;
+	int color;
+	int *dst;
+
+	if (mlx->sprt[i].new_y > 0 && start > 0 && start < plr->wid &&
+	mlx->sprt[i].new_y < plr->wall_dist_array[start] && mlx->sprt[i].dist
+	> 0.09)
 	{
-		x = 0;
-		while (x < all->file->sp_num)
+		j = mlx->sprt[i].draw_start_y;
+		while (j < mlx->sprt[i].draw_end_y)
 		{
-			if (all->mlx->sprt[x].dist < all->mlx->sprt[x + 1].dist)
-			{
-				tmp = all->mlx->sprt[x];
-				all->mlx->sprt[x] = all->mlx->sprt[x + 1];
-				all->mlx->sprt[x + 1] = tmp;
-			}
-			x++;
+			mlx->sprt[i].d = j * 256
+				- plr->hig * 128 + mlx->sprt[i].hight * 128;
+			mlx->sprt[i].tex_y = ((mlx->sprt[i].d * mlx->sprite->img_height)
+					/ mlx->sprt[i].hight) / 256;
+			dst = (void *)mlx->sprite->addr + (mlx->sprt[i].tex_y *
+					mlx->sprite->line_length + mlx->sprt[i].tex_x *
+					(mlx->sprite->bits_per_pixel / 8));
+			color = *(int*)dst;
+			if ((color & 0x00ffffff) != 0)
+				my_mlx_pixel_put(mlx, start, j, color);
+			j++;
 		}
-		cnt--;
 	}
 }
 
-void sprite_new_pposition(t_all *all, int wid, int high)
+void	sprite_calculations(t_all *all)
 {
 	int i;
+	int start;
 
 	i = 0;
-	int j;
-	int start;
-	int color;
-	int *dst;
 	while (i < all->file->sp_num)
 	{
-		all->mlx->sprt[i].inv_det = 1.0 / (all->plr->plan_x *
-				all->plr->vector_y - all->plr->vector_x * all->plr->plan_y);
-
-		all->mlx->sprt[i].new_x = all->mlx->sprt[i].inv_det
-				* (all->plr->vector_y * all->mlx->sprt[i].comp_x -
-				all->plr->vector_x * all->mlx->sprt[i].comp_y);
-		all->mlx->sprt[i].new_y = all->mlx->sprt[i].inv_det
-				* (-all->plr->plan_y * all->mlx->sprt[i].comp_x +
-				all->plr->plan_x *  all->mlx->sprt[i].comp_y);
-
-		all->mlx->sprt[i].screen_x = (int)(wid / 2)
-				* (1 + all->mlx->sprt[i].new_x / all->mlx->sprt[i].new_y);
-		all->mlx->sprt[i].hight = abs((int)(high / (all->mlx->sprt[i].new_y)));
-
-		all->mlx->sprt[i].draw_start_y = -all->mlx->sprt[i].hight / 2 + high / 2;
-		if (all->mlx->sprt[i].draw_start_y < 0)
-			all->mlx->sprt[i].draw_start_y = 0;
-		all->mlx->sprt[i].draw_end_y = all->mlx->sprt[i].hight / 2 + high / 2;
-		if (all->mlx->sprt[i].draw_end_y >= high)
-			all->mlx->sprt[i].draw_end_y = high - 1;
-		all->mlx->sprt[i].width = abs((int)(high / all->mlx->sprt[i].new_y));
-		all->mlx->sprt[i].draw_start_x = -all->mlx->sprt[i].width / 2 +
-				all->mlx->sprt[i].screen_x;
-		if (all->mlx->sprt[i].draw_start_x < 0)
-			all->mlx->sprt[i].draw_start_x = 0;
-		all->mlx->sprt[i].draw_end_x = all->mlx->sprt[i].width / 2 +
-				all->mlx->sprt[i].screen_x;
-		if (all->mlx->sprt[i].draw_end_x >= wid)
-			all->mlx->sprt[i].draw_end_x = wid - 1;
-
+		sprite_new_position(all->mlx, all->plr, i);
 		start = all->mlx->sprt[i].draw_start_x;
 		while (start < all->mlx->sprt[i].draw_end_x)
 		{
 			all->mlx->sprt[i].tex_x = (int)(256 * (start -
-					(-all->mlx->sprt[i].width / 2 + all->mlx->sprt[i].screen_x)) *
-					all->mlx->sprite->img_width / all->mlx->sprt[i].width) / 256;
-			if (all->mlx->sprt[i].new_y > 0 && start > 0 &&
-			start < wid && all->mlx->sprt[i].new_y <
-			all->plr->wall_dist_array[start] && all->mlx->sprt[i].dist > 0.09)
-			{
-				j = all->mlx->sprt[i].draw_start_y;
-				while (j < all->mlx->sprt[i].draw_end_y)
-				{
-					all->mlx->sprt[i].d = j * 256
-								 - high * 128 + all->mlx->sprt[i].hight * 128;
-					all->mlx->sprt[i].tex_y = ((all->mlx->sprt[i].d *
-							all->mlx->sprite->img_height)
-									  / all->mlx->sprt[i].hight) / 256;
-					dst = (void *)all->mlx->sprite->addr + (all->mlx->sprt[i].tex_y *
-							all->mlx->sprite->line_length + all->mlx->sprt[i].tex_x *
-							(all->mlx->sprite->bits_per_pixel / 8));
-					color = *(int*)dst;
-					if ((color & 0x00ffffff) != 0)
-						my_mlx_pixel_put(all->mlx, start, j, color);
-					j++;
-				}
-			}
+					(-all->mlx->sprt[i].width / 2 +
+					all->mlx->sprt[i].screen_x)) * all->mlx->sprite->img_width
+							/ all->mlx->sprt[i].width) / 256;
+			draw_sprite(i, start, all->mlx, all->plr);
 			start++;
 		}
 		i++;
 	}
 }
-void sprite_dist(t_all *all)
+
+void	make_sprite(t_all *all)
 {
 	int i;
 
@@ -118,19 +97,13 @@ void sprite_dist(t_all *all)
 	while (i < all->file->sp_num)
 	{
 		all->mlx->sprt[i].dist = (all->plr->posX - all->mlx->sprt[i].posX) *
-				(all->plr->posX - all->mlx->sprt[i].posX) +
-				(all->plr->posY - all->mlx->sprt[i].posY) *
-						(all->plr->posY - all->mlx->sprt[i].posY);
+			(all->plr->posX - all->mlx->sprt[i].posX) +
+			(all->plr->posY - all->mlx->sprt[i].posY) *
+			(all->plr->posY - all->mlx->sprt[i].posY);
 		all->mlx->sprt[i].comp_x = all->mlx->sprt[i].posX - all->plr->posX;
 		all->mlx->sprt[i].comp_y = all->mlx->sprt[i].posY - all->plr->posY;
-
 		i++;
 	}
-
-}
-void	make_sprite(t_all *all, int wid, int high)
-{
-	sprite_dist(all);
-	sorting(all);
-	sprite_new_pposition(all, wid, high);
+	sorting_sprite(all);
+	sprite_calculations(all);
 }
