@@ -1,5 +1,5 @@
 ✔️ cub3d
-This project is aim to understand how to implement your own game engine, using raycasting and this project is a part methodology learning students from 42 school (21 school in Moscow). Problem description:
+This project is aim to understand how to implement your own game engine, using raycasting and this project is a part methodology learning students from 42 school (21 school in Moscow). 
 
 Description
 The goal of cub3d is to make something using raycasting (like Wolfenstein 3D).
